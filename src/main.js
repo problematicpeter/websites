@@ -15,6 +15,7 @@ document.querySelector('#app').innerHTML = `
     <div class="hero-bg">
       <img src="${import.meta.env.BASE_URL}artist.jpeg" alt="" class="hero-bg-img" />
       <div class="hero-bg-overlay"></div>
+      <img src="${import.meta.env.BASE_URL}artist-subject.png" alt="" class="hero-subject" />
     </div>
     <div class="hero-content">
       <p class="hero-tag">DJ · Producer</p>
@@ -437,3 +438,30 @@ document.querySelectorAll('.track-row').forEach(row => {
 
 const firstRow = document.querySelector('.track-row')
 if (firstRow) loadTrack(firstRow)
+
+// ─── Hero parallax ───
+const heroBgImg   = document.querySelector('.hero-bg-img')
+const heroSubject = document.querySelector('.hero-subject')
+
+let tBgX = 0, tBgY = 0, tSubX = 0, tSubY = 0
+let cBgX = 0, cBgY = 0, cSubX = 0, cSubY = 0
+
+document.addEventListener('mousemove', (e) => {
+  const nx = (e.clientX / window.innerWidth  - 0.5) * 2
+  const ny = (e.clientY / window.innerHeight - 0.5) * 2
+  tBgX  = nx * -28
+  tBgY  = ny * -16
+  tSubX = nx * -10
+  tSubY = ny * -7
+});
+
+(function parallaxTick() {
+  requestAnimationFrame(parallaxTick)
+  const ease = 0.07
+  cBgX  += (tBgX  - cBgX)  * ease
+  cBgY  += (tBgY  - cBgY)  * ease
+  cSubX += (tSubX - cSubX) * ease
+  cSubY += (tSubY - cSubY) * ease
+  heroBgImg.style.transform   = `translate(${cBgX.toFixed(2)}px,${cBgY.toFixed(2)}px) scale(1.1)`
+  heroSubject.style.transform = `translate(${cSubX.toFixed(2)}px,${cSubY.toFixed(2)}px) scale(1.04)`
+})()
