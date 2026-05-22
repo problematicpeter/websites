@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Local tooling / raw assets
+.claude/
+Photo Assets/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
