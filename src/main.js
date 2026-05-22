@@ -13,7 +13,7 @@ document.querySelector('#app').innerHTML = `
 
   <section id="hero">
     <div class="hero-bg">
-      <img src="${import.meta.env.BASE_URL}artist.jpeg" alt="" class="hero-bg-img" />
+      <img src="${import.meta.env.BASE_URL}artist-bg.png" alt="" class="hero-bg-img" />
       <div class="hero-bg-overlay"></div>
       <img src="${import.meta.env.BASE_URL}artist-subject.png" alt="" class="hero-subject" />
     </div>
